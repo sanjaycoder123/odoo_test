@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record id="view_order_line_form" model="ir.ui.view">
+            <field name="name">sale.order.line.form</field>
+            <field name="model">order.line</field>
+            <field name="arch" type="xml">
+
+                <form string="Sales Order" class="o_sale_order">
+
+                    <group>
+                        <field name="sale_ids" widget="many2many_tags"/>
+                    </group>
+
+
+
+                    <footer>
+                        <!--<button string="View Order line" type="object" name="action_view_order"/>-->
+                        <button string="Sale lines" type="object" name="action_view_order_lines"/>
+                    </footer>
+
+                </form>
+                <notebook>
+	          		<page string="ORDER Lines">
+	          			<field name="details_line">
+	          				<tree editable="bottom" >
+	              				<field name="product_id" />
+	              				<field name="deliver" />
+	              				<field name="qty" />
+	              				<!--<field name="price" />-->
+	              				<!--<field name="invoice" />-->
+	              				<!--<field name="name"/>-->
+	          				</tree>
+	              		</field>
+	              	</page>
+                </notebook>
+            </field>
+        </record>
+
+
+        <record id="order_line" model="ir.actions.act_window">
+            <field name="name">Order line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">order.line</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">tree</field>
+            <field name="target">new</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    View order line .
+                </p>
+            </field>
+        </record>
+
+        <menuitem action="order_line"
+                  id="menu_sale_order_line_form"
+                  parent="sales_team.menu_sales" sequence="13"/>
+    </data>
+</odoo>
